@@ -1,0 +1,110 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="addProduct()"
+  style="margin: 15px"
+  enctype="multipart/form-data"
+>
+  <div style="max-width: 567px; margin-bottom: 15px">
+    <div style="margin-bottom: 10px; display: flex; align-items: center">
+      <label
+        for="name"
+        style="font-weight: bold; color: #333; margin-right: 10px"
+        >Libro:</label
+      >
+      <div style="flex: 1; position: relative">
+        <input
+          formControlName="name"
+          id="name"
+          name="name"
+          type="text"
+          [(ngModel)]="editProduct.name"
+          [ngClass]="{'invalidInput': (form.controls?.['name'].touched && !form.controls?.['name'].valid)}"
+          class="form-control"
+          placeholder="Ingrese el nombre del Libro"
+          style="
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+          "
+        />
+        @if (form.controls?.['name'].touched && !form.controls?.['name'].valid)
+        {
+        <div
+          class="requiredStar"
+          style="
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+          "
+          title="El campo 'Nombre' es obligatorio."
+        >
+          *
+        </div>
+        }
+      </div>
+    </div>
+
+    <div style="margin-bottom: 10px; display: flex; align-items: center">
+      <label
+        for="autor"
+        style="font-weight: bold; color: #333; margin-right: 10px"
+        >Autor:</label
+      >
+      <div style="flex: 1; position: relative">
+        <input
+          formControlName="autor"
+          id="autor"
+          name="autor"
+          type="text"
+          [(ngModel)]="editProduct.autor"
+          [ngClass]="{'invalidInput': form.controls?.['autor'].touched && !form.controls?.['autor'].valid}"
+          class="form-control"
+          placeholder="Ingrese el nombre del Autor"
+          style="
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+          "
+        />
+        @if (form.controls?.['autor'].touched &&
+        !form.controls?.['autor'].valid) {
+        <div
+          class="requiredStar"
+          style="
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+          "
+          title="El campo 'Autor' es obligatorio."
+        >
+          *
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: right; max-width: 450px">
+    <button
+      class="btn btn-danger"
+      style="margin-right: 17px"
+      type="button"
+      (click)="cancelClicked()"
+    >
+      Cancel
+    </button>
+    <button class="btn btn-primary" type="submit">
+      {{ submitButtonText }}
+    </button>
+  </div>
+</form>
